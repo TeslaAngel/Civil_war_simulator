@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: c71c528c0d36b6c4290bf83dcdb50824,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -127,7 +128,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15952
+  m_Name: pb_Mesh15920
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -390,6 +391,7 @@ GameObject:
   - component: {fileID: 573826168}
   - component: {fileID: 573826173}
   - component: {fileID: 573826172}
+  - component: {fileID: 573826174}
   m_Layer: 0
   m_Name: UACV
   m_TagString: Untagged
@@ -484,11 +486,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b40a135405d814896d4fdb0e253f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MotionGap: 10
   IsSelected: 0
   IsSkinnedMesh: 1
   MeshObject: {fileID: 1228079959}
-  Standard: {fileID: 2100000, guid: 8e2376dec5fd23f4d88d5bc0ce813706, type: 2}
-  Outline: {fileID: 2100000, guid: e86fd2c3820a1944288f88947e298e3d, type: 2}
+  Standard: {fileID: 2100000, guid: e86fd2c3820a1944288f88947e298e3d, type: 2}
+  Outline: {fileID: 2100000, guid: 8e2376dec5fd23f4d88d5bc0ce813706, type: 2}
 --- !u!195 &573826173
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -511,6 +514,25 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &573826174
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573826167}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 130ddf19e71d63845b92e6cfc4b6ac78, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &717996035
 GameObject:
   m_ObjectHideFlags: 0
@@ -29766,6 +29788,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1792008027447667721, guid: 840f9d1cd3dde0b41861c5b4a7e46923,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0006
+      objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 840f9d1cd3dde0b41861c5b4a7e46923,
         type: 3}
       propertyPath: m_Name
@@ -29775,6 +29802,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -214196494296634394, guid: 840f9d1cd3dde0b41861c5b4a7e46923,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00059999997
       objectReference: {fileID: 0}
     - target: {fileID: 2004167529386241789, guid: 840f9d1cd3dde0b41861c5b4a7e46923,
         type: 3}
@@ -29805,6 +29837,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.00115
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004167529386241789, guid: 840f9d1cd3dde0b41861c5b4a7e46923,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 840f9d1cd3dde0b41861c5b4a7e46923, type: 3}

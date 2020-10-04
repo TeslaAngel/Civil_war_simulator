@@ -9,6 +9,11 @@ public class UnitMovingController : MonoBehaviour
     private MeshRenderer meshRenderer;
     private SkinnedMeshRenderer skinnedMeshRenderer;
 
+    [Space]
+    public float MotionGap;
+    private float MotionGapCalculator = 0;
+
+    [Space]
     public bool IsSelected;
     public bool IsSkinnedMesh;
     public GameObject MeshObject;
@@ -47,8 +52,11 @@ public class UnitMovingController : MonoBehaviour
                         skinnedMeshRenderer.material=Standard;
                     return;
                 }
+                if (MotionGapCalculator > 0)
+                    return;
                 meshAgent.SetDestination(hit.point);
-                
+                MotionGapCalculator = MotionGap;
+
             }
         }
         if (Input.GetMouseButtonDown(0) && IsSelected == false)
@@ -61,12 +69,34 @@ public class UnitMovingController : MonoBehaviour
                 {
                     IsSelected = true;
                     if (!IsSkinnedMesh)
-                        meshRenderer.material=Outline;
+                        meshRenderer.material=new Material(Outline);
                     else
-                        skinnedMeshRenderer.material=Outline;
+                        skinnedMeshRenderer.material= new Material(Outline);
                 }
             }
         }
+
+        //Calculating Motion Gap
+        if (MotionGapCalculator > 0)
+        {
+            MotionGapCalculator -= Time.deltaTime;
+        }
+        else if (MotionGapCalculator < 0)
+        {
+            MotionGapCalculator = 0;
+        }
+
+        //Visualizing Time Gap Calculator
+
+        float FFvalue = 3 - (3 / MotionGap) * MotionGapCalculator;
         
+        if (!IsSkinnedMesh && IsSelected)
+        {
+            meshRenderer.material.SetFloat("Vector1_287BDE35", FFvalue);
+        }
+        if (IsSkinnedMesh && IsSelected)
+        {
+            skinnedMeshRenderer.material.SetFloat("Vector1_287BDE35", FFvalue);
+        }
     }
 }
