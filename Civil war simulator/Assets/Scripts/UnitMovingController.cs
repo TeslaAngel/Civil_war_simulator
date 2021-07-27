@@ -27,13 +27,16 @@ public class UnitMovingController : MonoBehaviour
     public Material Outline;
 
     [Header("GameSettings")]
+    public string Player;
+    public Transform Target;
+    [Space]
     public bool PermittedToFire;
     public bool IsSelected;
     public GameObject DistanceIndicator;
     public GameObject RangeIndicator;
 
     [Header("WeaponsSettings")]
-    public List<GameObject> Weapons = new List<GameObject>();
+    public List<WeaponTurretScript> Weapons = new List<WeaponTurretScript>();
 
 
     // Start is called before the first frame update
@@ -58,6 +61,14 @@ public class UnitMovingController : MonoBehaviour
         DistanceIndicator.SetActive(false);
         //Set the scale of DI in accordance of MaxTravelDistance
         DistanceIndicator.transform.localScale = new Vector3(MaxTravelDistance, DistanceIndicator.transform.localScale.y, MaxTravelDistance);
+
+        //Assigning Weapons
+        WeaponTurretScript[] weaponTurretScripts = transform.GetComponentsInChildren<WeaponTurretScript>(true);
+        for(int i = 0; i<weaponTurretScripts.Length; i++)
+        {
+            Weapons.Add(weaponTurretScripts[i]);
+        }
+
     }
 
 
@@ -96,6 +107,14 @@ public class UnitMovingController : MonoBehaviour
                 meshAgent.SetDestination(hit.point);
                 CanMove = false; //MotionGapCalculator = MotionGap;
 
+                //if targeting an enemy
+                if (PermittedToFire && hit.collider.gameObject.GetComponent<UnitMovingController>())
+                {
+                    if (hit.collider.gameObject.GetComponent<UnitMovingController>().Player != Player)
+                    {
+                        Target = hit.collider.gameObject.transform;
+                    }
+                }
             }
         }
         if (Input.GetMouseButtonDown(0) && IsSelected == false)
